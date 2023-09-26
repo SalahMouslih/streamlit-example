@@ -6,7 +6,7 @@ import streamlit as st
 import pandas as pd
 import torch, torchvision
 from transformers import ViTImageProcessor
-from torchvision import transforms
+from torchvision import transforms, datasets
 import os
 
 """
