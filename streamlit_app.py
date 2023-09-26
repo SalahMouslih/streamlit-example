@@ -21,6 +21,9 @@ Refe to [documentation](https://docs.streamlit.io) of the app to understand app 
 """
 ### Classify bags
 """
+def predict_class():
+    return trained_model.predict(test_data)
+
 
 feature_extractor = ViTImageProcessor.from_pretrained("google/vit-base-patch16-224-in21k")
 
@@ -43,21 +46,32 @@ trained_model = torch.load('./model/data/model.pth',map_location=torch.device('c
 
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 
-#test_data = torchvision.datasets.ImageFolder(uploaded_files, transform = _test_transforms)
+# Check if files were uploaded
+if uploaded_files:
+    # Create a temporary directory to store the uploaded images
+    tmp_dir = "tmp_uploaded_images"
+    os.makedirs(tmp_dir, exist_ok=True)
 
+    # Iterate through the uploaded files and save them to the temporary directory
+    for i, file in enumerate(uploaded_files):
+        with open(os.path.join(tmp_dir, f"image_{i}.jpg"), "wb") as f:
+            f.write(file.read())
+
+    # Define data transformation (you can modify this as needed)
+    data_transform = transforms.Compose([transforms.Resize((224, 224)),  # Resize images to the desired size
+                                         transforms.ToTensor()])  # Convert to PyTorch tensor
+
+    # Create an ImageFolder dataset from the uploaded images
+    image_dataset = datasets.ImageFolder(root=tmp_dir, transform=data_transform)
+
+    if st.button("Predict"):
+        predict_class()
+    
 
 """
 
 
 """
-def predict_class():
-    return trained_model.predict(test_data)
 
-if st.button("Predict"):
-    st.markdown(uploaded_files)
-    #predict_class()
 
-print(trained_model)
 
-# Predict on a Pandas DataFrame.
-#loaded_model.predict(pd.DataFrame(data))
