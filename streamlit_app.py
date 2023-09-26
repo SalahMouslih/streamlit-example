@@ -47,14 +47,14 @@ uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_f
 
 
 """
-uploaded_files
+
 
 """
 def predict_class():
     return trained_model.predict(test_data)
 
 if st.button("Predict"):
-
+    st.markdown(uploaded_files)
     predict_class()
 
 print(trained_model)
