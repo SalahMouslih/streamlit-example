@@ -50,7 +50,7 @@ uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_f
 # Check if files were uploaded
 if uploaded_files:
     # Create a temporary directory to store the uploaded images
-    tmp_dir = "tmp_uploaded_images"
+    tmp_dir = "tmp_uploaded_images/inf"
     os.makedirs(tmp_dir, exist_ok=True)
 
     # Iterate through the uploaded files and save them to the temporary directory
