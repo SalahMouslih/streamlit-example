@@ -58,7 +58,7 @@ if uploaded_files:
         with open(os.path.join(tmp_dir, f"image_{i}.jpg"), "wb") as f:
             f.write(file.read())
 
-    os.listdir(tmp_dir)
+    print(os.listdir(tmp_dir))
 
     # Create an ImageFolder dataset from the uploaded images
     image_dataset = datasets.ImageFolder(root=tmp_dir, transform=_test_transforms)
