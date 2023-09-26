@@ -64,16 +64,4 @@ if uploaded_files:
 
     if st.button("Predict"):
         preds = predict_class(image_dataset)
-
-        '''
-        predictions: {{preds}} 
-        '''
-    
-
-"""
-
-
-"""
-
-
-
+        st.write("Prediction:", preds)
