@@ -16,22 +16,21 @@ Refe to [documentation](https://docs.streamlit.io) of the app to understand app 
 
 """
 
-# load pre-trained model
-#trained_model = pickle.load(open(model_filename, 'rb'))
 
 """
 ### Classify bags
 """
+
+# load pre-trained model
+trained_model = pickle.load(open(model/data/model.pth, 'rb'))
+
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 
 
-#logged_model = 'runs:/3c802963efed4b84be2eea9ccb96be8a/pytorch-tuned-EFF_NET-model'
+if trained_model:
+  print('success')
+else : print('nothing')
 
-# Load model as a PyFuncModel.
-#loaded_model = mlflow.pyfunc.load_model(logged_model)
 
-#if loaded_model:
-#  print('success')
-#else : print('nothing')
 # Predict on a Pandas DataFrame.
 #loaded_model.predict(pd.DataFrame(data))
