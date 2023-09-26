@@ -21,7 +21,7 @@ Refe to [documentation](https://docs.streamlit.io) of the app to understand app 
 """
 
 # load pre-trained model
-trained_model = torch.load('./model/data/model.pth')
+trained_model = torch.load('./model/data/model.pth',map_location=torch.device('cpu') )
 
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 
