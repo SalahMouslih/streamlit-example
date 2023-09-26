@@ -5,6 +5,8 @@ import pandas as pd
 import streamlit as st
 import pandas as pd
 import torch, torchvision
+from transformers import ViTImageProcessor
+from torchvision import transforms
 
 """
 # Welcome to Afraudet!
