@@ -22,7 +22,7 @@ Refe to [documentation](https://docs.streamlit.io) of the app to understand app 
 """
 ### Classify bags
 """
-def predict_class():
+def predict_class(test_data):
     return trained_model(test_data)
 
 
@@ -66,7 +66,7 @@ if uploaded_files:
     #image_dataset = datasets.ImageFolder(root=tmp_dir, transform=_test_transforms)
 
     if st.button("Predict"):
-        preds = predict_class()
+        preds = predict_class(image_dataset)
 
         '''
         predictions: {{preds}} 
