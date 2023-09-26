@@ -7,6 +7,7 @@ import pandas as pd
 import torch, torchvision
 from transformers import ViTImageProcessor
 from torchvision import transforms
+import os
 
 """
 # Welcome to Afraudet!
