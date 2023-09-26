@@ -22,6 +22,12 @@ Refe to [documentation](https://docs.streamlit.io) of the app to understand app 
 ### Classify bags
 """
 
+feature_extractor = ViTImageProcessor.from_pretrained("google/vit-base-patch16-224-in21k")
+
+image_mean, image_std = feature_extractor.image_mean, feature_extractor.image_std
+size = feature_extractor.size["height"]
+
+normalize = transforms.Normalize(mean=image_mean, std=image_std)
 _test_transforms = transforms.Compose(
     [
         transforms.Resize(size),
