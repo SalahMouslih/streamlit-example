@@ -73,6 +73,11 @@ trained_model = torch.load('./model/data/model.pth',map_location=torch.device('c
 
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 
+test_data = torchvision.datasets.ImageFolder(uploaded_files, transform = transforms('test'))
+
+if st.button(“Predict”):
+
+    predict_class()
 
 print(trained_model)
 
