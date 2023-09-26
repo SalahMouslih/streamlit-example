@@ -8,6 +8,7 @@ import torch, torchvision
 from transformers import ViTImageProcessor
 from torchvision import transforms, datasets
 import os
+from torch.utils.data import Dataset
 
 """
 # Welcome to Afraudet!
@@ -60,7 +61,7 @@ if uploaded_files:
 
 
     # Create an ImageFolder dataset from the uploaded images
-    image_dataset = datasets.ImageFolder(root=tmp_dir, transform=_test_transforms)
+    image_dataset = Dataset(root=tmp_dir, transform=_test_transforms)
 
     if st.button("Predict"):
         preds = predict_class(image_dataset)
