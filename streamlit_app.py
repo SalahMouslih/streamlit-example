@@ -4,7 +4,7 @@ import math
 import pandas as pd
 import streamlit as st
 import pandas as pd
-import torch
+import torch, torchvision
 
 """
 # Welcome to Afraudet!
