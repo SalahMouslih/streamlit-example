@@ -16,9 +16,10 @@ Refe to [documentation](https://docs.streamlit.io) of the app to understand app 
 
 # load pre-trained model
 #trained_model = pickle.load(open(model_filename, 'rb'))
-'''
+
+"""
 ### Classify bags
-'''
+"""
 uploaded_file = st.file_uploader("Upload your Images here...")
 
 
