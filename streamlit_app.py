@@ -20,6 +20,6 @@ Refe to [documentation](https://docs.streamlit.io) of the app to understand app 
 """
 ### Classify bags
 """
-uploaded_file = st.file_uploader("Upload your Images here...")
+uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 
 
