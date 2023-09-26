@@ -3,6 +3,7 @@ import altair as alt
 import math
 import pandas as pd
 import streamlit as st
+import pandas as pd
 
 """
 # Welcome to Afraudet!
@@ -13,13 +14,8 @@ Refe to [documentation](https://docs.streamlit.io) of the app to understand app 
 
 """
 
-
-import pickle
-import streamlit as st
-import pandas as pd
-
 # load pre-trained model
-trained_model = pickle.load(open(model_filename, 'rb'))
+#trained_model = pickle.load(open(model_filename, 'rb'))
 
 uploaded_file = st.file_uploader("Upload your file here...", type=['csv'])
 
