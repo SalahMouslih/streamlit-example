@@ -69,7 +69,7 @@ if uploaded_files:
         preds = predict_class()
 
         '''
-        predictions: {preds} 
+        predictions: {{preds}} 
         '''
     
 
