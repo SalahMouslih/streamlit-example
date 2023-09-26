@@ -27,9 +27,7 @@ uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_f
 
 
 if trained_model is not None:
-  print('success')
-else : print('nothing')
-
+print(trained_model)
 
 # Predict on a Pandas DataFrame.
 #loaded_model.predict(pd.DataFrame(data))
