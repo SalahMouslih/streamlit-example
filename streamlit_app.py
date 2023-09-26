@@ -23,7 +23,7 @@ Refe to [documentation](https://docs.streamlit.io) of the app to understand app 
 ### Classify bags
 """
 def predict_class():
-    return trained_model.evaluate(test_data)
+    return trained_model(test_data)
 
 
 feature_extractor = ViTImageProcessor.from_pretrained("google/vit-base-patch16-224-in21k")
