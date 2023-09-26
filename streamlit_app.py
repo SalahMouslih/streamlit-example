@@ -42,7 +42,25 @@ _test_transforms = transforms.Compose(
     ]
 )
 
- 
+
+class InferDataset(torch.utils.data.Dataset):
+    def __init__(self, pil_imgs):
+        super(InferDataset, self,).__init__()
+
+        self.pil_imgs = pil_imgs
+        self.transform = make_transform() # some infer transform
+
+    def __len__(self):
+        return len(self.pil_imgs)
+
+    def __getitem__(self, idx):
+        img = self.pil_imgs[idx]
+
+        return self.transform(img)
+
+
+infer_data = InferDataset(pil_imgs)
+
 # load pre-trained model
 trained_model = torch.load('./model/data/model.pth',map_location=torch.device('cpu') )
 
