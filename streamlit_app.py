@@ -58,12 +58,9 @@ if uploaded_files:
         with open(os.path.join(tmp_dir, f"image_{i}.jpg"), "wb") as f:
             f.write(file.read())
 
-    """
-    print(os.listdir(tmp_dir))
-    """
 
     # Create an ImageFolder dataset from the uploaded images
-    #image_dataset = datasets.ImageFolder(root=tmp_dir, transform=_test_transforms)
+    image_dataset = datasets.ImageFolder(root=tmp_dir, transform=_test_transforms)
 
     if st.button("Predict"):
         preds = predict_class(image_dataset)
