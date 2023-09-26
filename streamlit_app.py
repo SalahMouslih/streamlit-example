@@ -31,7 +31,7 @@ _test_transforms = transforms.Compose(
     ]
 )
 
-
+ 
 # load pre-trained model
 trained_model = torch.load('./model/data/model.pth',map_location=torch.device('cpu') )
 
