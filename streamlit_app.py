@@ -6,7 +6,6 @@ import streamlit as st
 import pandas as pd
 import mlflow
 
-!pip install mlflow
 
 """
 # Welcome to Afraudet!
@@ -25,7 +24,7 @@ Refe to [documentation](https://docs.streamlit.io) of the app to understand app 
 """
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 
-import mlflow
+
 logged_model = 'runs:/3c802963efed4b84be2eea9ccb96be8a/pytorch-tuned-EFF_NET-model'
 
 # Load model as a PyFuncModel.
