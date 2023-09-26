@@ -75,7 +75,10 @@ uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_f
 
 test_data = torchvision.datasets.ImageFolder(uploaded_files, transform = transforms('test'))
 
-if st.button(“Predict”):
+def predict_class():
+    return trained_model.predict(test_data)
+
+if st.button("Predict"):
 
     predict_class()
 
