@@ -58,12 +58,10 @@ if uploaded_files:
         with open(os.path.join(tmp_dir, f"image_{i}.jpg"), "wb") as f:
             f.write(file.read())
 
-    # Define data transformation (you can modify this as needed)
-    data_transform = transforms.Compose([transforms.Resize((224, 224)),  # Resize images to the desired size
-                                         transforms.ToTensor()])  # Convert to PyTorch tensor
+    os.listdir(tmp_dir)
 
     # Create an ImageFolder dataset from the uploaded images
-    image_dataset = datasets.ImageFolder(root=tmp_dir, transform=data_transform)
+    image_dataset = datasets.ImageFolder(root=tmp_dir, transform=_test_transforms)
 
     if st.button("Predict"):
         predict_class()
