@@ -66,7 +66,11 @@ if uploaded_files:
     #image_dataset = datasets.ImageFolder(root=tmp_dir, transform=_test_transforms)
 
     if st.button("Predict"):
-        predict_class()
+        preds = predict_class()
+
+        '''
+        predictions: {preds} 
+        '''
     
 
 """
