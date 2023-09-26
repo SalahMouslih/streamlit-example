@@ -14,5 +14,5 @@ Refe to [documentation](https://docs.streamlit.io) of the app to understand app 
 """
 
 
-uploaded_file = st.file_uploader("Upload your images here...")
+#uploaded_file = st.file_uploader("Upload your images here...")
 
