@@ -2,3 +2,6 @@ altair
 pandas
 streamlit
 mlflow
+picke
+torch==1.13.1
+torchvision=0.14.1
