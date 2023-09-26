@@ -23,7 +23,7 @@ Refe to [documentation](https://docs.streamlit.io) of the app to understand app 
 """
 
 # load pre-trained model
-trained_model = pickle.load(open('./model/data/model.pth', 'rb'))
+trained_model = mlflow.pyfunc.load_model('./model/data/model.pth')
 
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 
