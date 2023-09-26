@@ -16,13 +16,9 @@ Refe to [documentation](https://docs.streamlit.io) of the app to understand app 
 
 # load pre-trained model
 #trained_model = pickle.load(open(model_filename, 'rb'))
+'''
+### Classify bags
+'''
+uploaded_file = st.file_uploader("Upload your Images here...")
 
-uploaded_file = st.file_uploader("Upload your file here...", type=['csv'])
 
-if uploaded_file is not None:
-	dataframe = pd.read_csv(uploaded_file)
-
-	X = dataframe[["column1","column2"]]
-	result = trained_model.predict(X)
-	
-	st.write(f"Your prediction is: {result}")
