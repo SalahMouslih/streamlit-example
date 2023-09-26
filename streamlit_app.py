@@ -6,6 +6,8 @@ import streamlit as st
 import pandas as pd
 import mlflow
 
+%pip install mlflow
+
 """
 # Welcome to Afraudet!
 
