@@ -55,7 +55,7 @@ def predict_class():
 
 if st.button("Predict"):
     st.markdown(uploaded_files)
-    predict_class()
+    #predict_class()
 
 print(trained_model)
 
