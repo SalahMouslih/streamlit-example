@@ -1,0 +1,23 @@
+artifact_path: pytorch-tuned-EFF_NET-model
+databricks_runtime: 13.0.x-gpu-ml-scala2.12
+flavors:
+  python_function:
+    data: data
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pytorch
+    pickle_module_name: mlflow.pytorch.pickle_module
+    python_version: 3.10.12
+  pytorch:
+    code: null
+    model_data: data
+    pytorch_version: 1.13.1+cu117
+mlflow_version: 2.2.1
+model_uuid: f55efa49f84e42a9b7ffa85730f6c27a
+run_id: 3c802963efed4b84be2eea9ccb96be8a
+saved_input_example_info:
+  artifact_path: input_example.json
+  format: tf-serving
+  type: ndarray
+utc_time_created: '2023-09-15 15:19:08.399550'
