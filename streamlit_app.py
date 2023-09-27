@@ -24,7 +24,7 @@ Please Refer to [documentation](https://docs.streamlit.io) to understand app com
 ### Classify bags
 Upload your images here
 """
-def predict_class(test_data):
+def predict_class(model, test_data):
     model.eval()
 
     with torch.no_grad():
@@ -89,7 +89,7 @@ infer_loader = torch.utils.data.DataLoader(image_dataset,
                                            pin_memory=True)
 
 if st.button("Predict"):
-    preds = predict_class(infer_loader)
-    st.write("Prediction:", preds)
+    preds = predict_class(trained_model, infer_loader)
+    st.write("Prediction:", preds[0], 'avg score', preds[1])
     
 
