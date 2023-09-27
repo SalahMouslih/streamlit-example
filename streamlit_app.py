@@ -25,7 +25,20 @@ Please Refer to [documentation](https://docs.streamlit.io) to understand app com
 Upload your images here
 """
 def predict_class(test_data):
-    return trained_model(test_data)
+    model.eval()
+
+    with torch.no_grad():
+        #batch loop
+        for _, batch in enumerate(test_data):
+
+
+            inputs = batch
+
+            outputs = model(inputs)
+            
+            outputs = torch.round(torch.sigmoid(outputs))
+    
+    return outputs, torch.mean(outputs)
 
 
 feature_extractor = ViTImageProcessor.from_pretrained("google/vit-base-patch16-224-in21k")
