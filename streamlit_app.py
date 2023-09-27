@@ -66,7 +66,7 @@ trained_model = torch.load('./model/data/model.pth',map_location=torch.device('c
 
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 
-pil_images = [image.open(file_) for file_ in uploaded_files]
+pil_images = [Image.open(file_) for file_ in uploaded_files]
 
 
 image_dataset = InferDataset(pil_images,_test_transforms)
