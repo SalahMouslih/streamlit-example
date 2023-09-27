@@ -15,15 +15,14 @@ from PIL import Image
 """
 # Welcome to Afraudet!
 
-Please
-
-Refe to [documentation](https://docs.streamlit.io) of the app to understand app components
+Please Refer to [documentation](https://docs.streamlit.io) to understand app components
 
 """
 
 
 """
 ### Classify bags
+Upload your images here
 """
 def predict_class(test_data):
     return trained_model(test_data)
