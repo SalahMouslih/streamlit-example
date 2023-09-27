@@ -9,6 +9,8 @@ from transformers import ViTImageProcessor
 from torchvision import transforms, datasets
 import os
 from torch.utils.data import Dataset
+from PIL import Image
+
 
 """
 # Welcome to Afraudet!
@@ -44,11 +46,11 @@ _test_transforms = transforms.Compose(
 
 
 class InferDataset(torch.utils.data.Dataset):
-    def __init__(self, pil_imgs):
+    def __init__(self, pil_imgs, _test_transforms):
         super(InferDataset, self,).__init__()
 
         self.pil_imgs = pil_imgs
-        self.transform = make_transform() # some infer transform
+        self.transform = _test_transforms
 
     def __len__(self):
         return len(self.pil_imgs)
@@ -66,6 +68,17 @@ trained_model = torch.load('./model/data/model.pth',map_location=torch.device('c
 
 uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
 
+pil_images = [image.open(file_) for file_ in uploaded_files]
+
+
+image_dataset = InferDataset(pil_images,_test_transforms)
+
+
+if st.button("Predict"):
+    preds = predict_class(image_dataset)
+    st.write("Prediction:", preds)
+    
+'''
 # Check if files were uploaded
 if uploaded_files:
     # Create a temporary directory to store the uploaded images
@@ -80,7 +93,4 @@ if uploaded_files:
 
     # Create an ImageFolder dataset from the uploaded images
     image_dataset = Dataset(root=tmp_dir, transform=_test_transforms)
-
-    if st.button("Predict"):
-        preds = predict_class(image_dataset)
-        st.write("Prediction:", preds)
+'''
