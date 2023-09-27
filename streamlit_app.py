@@ -1,102 +1,73 @@
-from collections import namedtuple
+
+    
+# Import necessary libraries
 import altair as alt
 import math
 import pandas as pd
 import streamlit as st
-import pandas as pd
-import torch, torchvision
+import torch
 from transformers import ViTImageProcessor
-from torchvision import transforms, datasets
-import os
-from torch.utils.data import Dataset
+from torchvision import transforms
 from PIL import Image
 import random
 
-"""
-# Welcome to Afraudet!
-
-Please Refer to [documentation](https://docs.streamlit.io) to understand app components
-
-"""
-
-
-"""
-### Classify bags
-Upload your images here
-"""
-def predict_class(model, test_data):
-    model.eval()
-
-    with torch.no_grad():
-        #batch loop
-        for _, batch in enumerate(test_data):
-
-
-            inputs = batch
-
-            outputs = model(inputs)
-            
-            outputs = torch.round(torch.sigmoid(outputs))
-    
-    return outputs, torch.mean(outputs)
-
-
-feature_extractor = ViTImageProcessor.from_pretrained("google/vit-base-patch16-224-in21k")
-
-image_mean, image_std = feature_extractor.image_mean, feature_extractor.image_std
-size = feature_extractor.size["height"]
-
-normalize = transforms.Normalize(mean=image_mean, std=image_std)
-_test_transforms = transforms.Compose(
-    [
-        transforms.Resize(size),
-        transforms.CenterCrop(size),
-        transforms.ToTensor(),
-        normalize,
-    ]
+# Define app title and description
+st.title("Afraudet - Handbag Authenticity Checker")
+st.write(
+    "Upload an image of your handbag to determine whether it's authentic or counterfeit."
 )
 
+# Upload images
+uploaded_files = st.file_uploader(
+    "Upload your handbag image(s) here...", accept_multiple_files=True
+)
 
-class InferDataset(torch.utils.data.Dataset):
-    def __init__(self, pil_imgs, _test_transforms):
-        super(InferDataset, self,).__init__()
+if uploaded_files:
+    # Create a list to store PIL images from uploaded files
+    pil_images = [Image.open(file_) for file_ in uploaded_files]
 
-        self.pil_imgs = pil_imgs
-        self.transform = _test_transforms
+    # Load the ViT image processor
+    feature_extractor = ViTImageProcessor.from_pretrained("google/vit-base-patch16-224-in21k")
+    image_mean, image_std = feature_extractor.image_mean, feature_extractor.image_std
+    size = feature_extractor.size["height"]
 
-    def __len__(self):
-        return len(self.pil_imgs)
+    # Define image transformations
+    normalize = transforms.Normalize(mean=image_mean, std=image_std)
+    test_transforms = transforms.Compose(
+        [
+            transforms.Resize(size),
+            transforms.CenterCrop(size),
+            transforms.ToTensor(),
+            normalize,
+        ]
+    )
 
-    def __getitem__(self, idx):
-        img = self.pil_imgs[idx]
+    # Create a DataLoader for inference
+    infer_dataset = InferDataset(pil_images, test_transforms)
+    infer_loader = torch.utils.data.DataLoader(
+        infer_dataset,
+        batch_size=len(infer_dataset),
+        shuffle=False,
+        num_workers=4,
+        pin_memory=True,
+    )
 
-        return self.transform(img)
+    # Load the pre-trained model
+    trained_model = torch.load('./model/data/model.pth', map_location=torch.device('cpu'))
 
+    # Predict authenticity on button click
+    if st.button("Predict"):
+        preds, confidence = predict_class(trained_model, infer_loader)
 
-# load pre-trained model
-trained_model = torch.load('./model/data/model.pth',map_location=torch.device('cpu') )
+        # Determine authenticity and display result
+        authenticity = 'Counterfeit' if preds.item() >= 1 else 'Authentic'
+        st.write(f'Your handbag appears to be {authenticity} with a confidence score of {random.randint(85, 96)}%.')
+        st.write('Contact our [experts](https://docs.streamlit.io) for more information.')
 
-uploaded_files = st.file_uploader("Upload your files here...", accept_multiple_files=True)
+# Sidebar with documentation link
+st.sidebar.markdown("### Documentation")
+st.sidebar.markdown("[Streamlit Documentation](https://docs.streamlit.io)")
 
-pil_images = [Image.open(file_) for file_ in uploaded_files]
-
-
-image_dataset = InferDataset(pil_images,_test_transforms)
-infer_loader = torch.utils.data.DataLoader(image_dataset,
-                                           batch_size=len(image_dataset),
-                                           shuffle=False,
-                                           num_workers=4,
-                                           pin_memory=True)
-
-if st.button("Predict"):
-    preds = predict_class(trained_model, infer_loader)
-    class_ = ""
-    if preds[1].item()>=1:
-        class_ = 'a **Counterfeit** :x:'
-    else :  class_ = 'an **Authentic** :100: '
-    
-    
-    st.write('Your handbag seems to be ', class_,' with a confidence score of ', random.randint(85, 96) ,'%' )
-    st.write('conatct our [experts](https://docs.streamlit.io) to understand model decision')
-    
+# Add a footer
+st.sidebar.markdown("App created by Your Name")
 
