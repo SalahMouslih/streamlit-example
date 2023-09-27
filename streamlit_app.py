@@ -70,10 +70,14 @@ pil_images = [Image.open(file_) for file_ in uploaded_files]
 
 
 image_dataset = InferDataset(pil_images,_test_transforms)
-
+infer_loader = torch.utils.data.DataLoader(infer_data,
+                                           batch_size=len(image_dataset),
+                                           shuffle=False,
+                                           num_workers=4,
+                                           pin_memory=True
 
 if st.button("Predict"):
-    preds = predict_class(image_dataset)
+    preds = predict_class(infer_loader)
     st.write("Prediction:", preds)
     
 '''
