@@ -11,6 +11,24 @@ from torchvision import transforms
 from PIL import Image
 import random
 
+
+
+class InferDataset(torch.utils.data.Dataset):
+    def __init__(self, pil_imgs, _test_transforms):
+        super(InferDataset, self,).__init__()
+
+        self.pil_imgs = pil_imgs
+        self.transform = _test_transforms
+
+    def __len__(self):
+        return len(self.pil_imgs)
+
+    def __getitem__(self, idx):
+        img = self.pil_imgs[idx]
+
+        return self.transform(img)
+
+
 # Define app title and description
 st.title("Afraudet - Handbag Authenticity Checker")
 st.write(
@@ -60,14 +78,14 @@ if uploaded_files:
         preds, confidence = predict_class(trained_model, infer_loader)
 
         # Determine authenticity and display result
-        authenticity = 'Counterfeit' if preds.item() >= 1 else 'Authentic'
+        authenticity = '**Counterfeit**  :x:' if preds.item() >= 1 else '**Authentic**  :100:'
         st.write(f'Your handbag appears to be {authenticity} with a confidence score of {random.randint(85, 96)}%.')
-        st.write('Contact our [experts](https://docs.streamlit.io) for more information.')
+        st.write('Contact our [experts]() for more information.')
 
 # Sidebar with documentation link
 st.sidebar.markdown("### Documentation")
-st.sidebar.markdown("[Streamlit Documentation](https://docs.streamlit.io)")
+st.sidebar.markdown("[Streamlit Documentation]()")
 
 # Add a footer
-st.sidebar.markdown("App created by Your Name")
+st.sidebar.markdown("App created by **Solution** BI")
 
