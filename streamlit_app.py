@@ -92,8 +92,8 @@ if st.button("Predict"):
     preds = predict_class(trained_model, infer_loader)
     class_ = ""
     if preds[1].item()>=1:
-        class_ = 'a **Counterfeit** :)'
-    else :  class_ = 'an **Authentic** :/'
+        class_ = 'a **Counterfeit** :x:'
+    else :  class_ = 'an **Authentic** :100: '
     
     
     st.write('Your handbag seems to be ', class_,' with a confidence score of ', random.randint(85, 96) ,'%' )
