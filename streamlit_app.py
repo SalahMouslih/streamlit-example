@@ -90,10 +90,10 @@ infer_loader = torch.utils.data.DataLoader(image_dataset,
 
 if st.button("Predict"):
     preds = predict_class(trained_model, infer_loader)
-    class = ""
+    class_ = ""
     if preds[1].item()>=1:
-        class = 'a **Counterfeit** :)'
-    else :  class = 'an **Authentic** :/'
+        class_ = 'a **Counterfeit** :)'
+    else :  class_ = 'an **Authentic** :/'
     
     
     st.write('Your handbag seems to be ', class_,' with a confidence score of ', random.randint(85, 96) ,'%' )
