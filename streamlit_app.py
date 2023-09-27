@@ -61,8 +61,6 @@ class InferDataset(torch.utils.data.Dataset):
         return self.transform(img)
 
 
-infer_data = InferDataset(pil_imgs)
-
 # load pre-trained model
 trained_model = torch.load('./model/data/model.pth',map_location=torch.device('cpu') )
 
