@@ -79,19 +79,4 @@ if st.button("Predict"):
     preds = predict_class(infer_loader)
     st.write("Prediction:", preds)
     
-'''
-# Check if files were uploaded
-if uploaded_files:
-    # Create a temporary directory to store the uploaded images
-    tmp_dir = "tmp_uploaded_images/inf"
-    os.makedirs(tmp_dir, exist_ok=True)
 
-    # Iterate through the uploaded files and save them to the temporary directory
-    for i, file in enumerate(uploaded_files):
-        with open(os.path.join(tmp_dir, f"image_{i}.jpg"), "wb") as f:
-            f.write(file.read())
-
-
-    # Create an ImageFolder dataset from the uploaded images
-    image_dataset = Dataset(root=tmp_dir, transform=_test_transforms)
-'''
