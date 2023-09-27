@@ -94,7 +94,7 @@ if uploaded_files:
         preds, confidence = predict_class(trained_model, infer_loader)
 
         # Determine authenticity and display result
-        authenticity = '**Counterfeit**  :x:' if preds.item() >= 1 else '**Authentic**  :100:'
+        authenticity = '**Counterfeit**  :x:' if preds[1].item() >= 1 else '**Authentic**  :100:'
         st.write(f'Your handbag appears to be {authenticity} with a confidence score of {random.randint(85, 96)}%.')
         st.write('Contact our [experts]() for more information.')
 
