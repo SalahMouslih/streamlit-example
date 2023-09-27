@@ -1,6 +1,3 @@
-
-    
-# Import necessary libraries
 import altair as alt
 import math
 import pandas as pd
@@ -103,5 +100,5 @@ st.sidebar.markdown("### Documentation")
 st.sidebar.markdown("[Streamlit Documentation]()")
 
 # Add a footer
-st.sidebar.markdown("App created by **Solution** BI")
+st.sidebar.markdown("App created by **Solution** '<p style="font-family:sans-serif; color:Red; font-size: 42px;">BI</p>'")
 
