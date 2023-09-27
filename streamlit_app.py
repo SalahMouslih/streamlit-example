@@ -97,7 +97,7 @@ if uploaded_files:
 
 # Sidebar with documentation link
 st.sidebar.markdown("### Documentation")
-st.sidebar.markdown("[Streamlit Documentation]()")
+st.sidebar.markdown("[Afraudet Documentation]()")
 
 # Add a footer
 st.sidebar.markdown("App created by **Solution** BI")
