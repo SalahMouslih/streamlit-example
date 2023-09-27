@@ -27,6 +27,22 @@ class InferDataset(torch.utils.data.Dataset):
         img = self.pil_imgs[idx]
 
         return self.transform(img)
+        
+def predict_class(model, test_data):
+    model.eval()
+
+    with torch.no_grad():
+        #batch loop
+        for _, batch in enumerate(test_data):
+
+
+            inputs = batch
+
+            outputs = model(inputs)
+            
+            outputs = torch.round(torch.sigmoid(outputs))
+    
+    return outputs, torch.mean(outputs)
 
 
 # Define app title and description
