@@ -70,7 +70,7 @@ pil_images = [Image.open(file_) for file_ in uploaded_files]
 
 
 image_dataset = InferDataset(pil_images,_test_transforms)
-infer_loader = torch.utils.data.DataLoader(infer_data,
+infer_loader = torch.utils.data.DataLoader(image_dataset,
                                            batch_size=len(image_dataset),
                                            shuffle=False,
                                            num_workers=4,
