@@ -6,7 +6,7 @@ import torch
 from transformers import ViTImageProcessor
 from torchvision import transforms
 from PIL import Image
-import random
+import random, time
 
 
 
