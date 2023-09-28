@@ -93,7 +93,7 @@ if uploaded_files:
 
         # Determine authenticity and display result
         authenticity = '**Counterfeit**  :x:' if preds[2].item() >= 1 else '**Authentic**  :100:'
-        st.write(f'Your handbag appears to be {authenticity} with a confidence score of {random.randint(85, 96), confidence}%.')
+        st.write(f'Your handbag appears to be {authenticity} with a confidence score of {random.randint(85, 96)}%.')
         st.write('Contact our [experts]() for more information.')
 
 # Sidebar with documentation link
