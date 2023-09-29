@@ -37,7 +37,7 @@ def predict_class(model, test_data):
 
             outputs = model(inputs)
             
-            outputs = torch.round(torch.sigmoid(outputs))
+            #outputs = torch.round(torch.sigmoid(outputs))
             confidence = torch.sigmoid(outputs)
     
     return outputs, confidence , torch.mean(outputs)
