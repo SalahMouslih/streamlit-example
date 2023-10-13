@@ -91,12 +91,12 @@ if uploaded_files:
     if st.button("Predict"):
         preds, confidence , mean_= predict_class(trained_model, infer_loader)
         # Determine authenticity and display result
-        authenticity = '**Counterfeit**  :x:' if mean_.item() >= 1 else '**Authentic**  :100:'
-        
+        authenticity = '**Counterfeit**  :x:' if mean_.item() >= 0.5 else '**Authentic**  :100:'
+        score = mean_  if mean_.item() >= 0.5 else mean_= 1-mean_
         st.write(confidence)
         with st.spinner('Please wait while our model works its magic classifying your handbag! 👜✨'):
             time.sleep(5)
-        st.write(f'Your handbag appears to be {authenticity} with a confidence score of {random.randint(89, 95)}%.')
+        st.write(f'Your handbag appears to be {authenticity} with a confidence score of {mean_}%.')
         st.write('Contact our [experts]() for more information.')
 
 # Sidebar with documentation link
