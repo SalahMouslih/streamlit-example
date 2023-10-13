@@ -9,7 +9,6 @@ from PIL import Image
 import random, time
 
 
-
 class InferDataset(torch.utils.data.Dataset):
     def __init__(self, pil_imgs, _test_transforms):
         super(InferDataset, self,).__init__()
@@ -93,10 +92,11 @@ if uploaded_files:
         # Determine authenticity and display result
         authenticity = '**Counterfeit**  :x:' if mean_.item() >= 0.5 else '**Authentic**  :100:'
         score = mean_  if mean_.item() >= 0.5 else 1-mean_
-        st.write(confidence)
+        score = score.numpy().mean()
+        st.write(score)
         with st.spinner('Please wait while our model works its magic classifying your handbag! 👜✨'):
             time.sleep(5)
-        st.write(f'Your handbag appears to be {authenticity} with a confidence score of {round(score.numpy().mean(),2)}%.')
+        st.write(f'Your handbag appears to be {authenticity} with a confidence score of {round(score,2)}%.')
         st.write('Contact our [experts]() for more information.')
 
 # Sidebar with documentation link
