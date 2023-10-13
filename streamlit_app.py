@@ -92,7 +92,7 @@ if uploaded_files:
         preds, confidence , mean_= predict_class(trained_model, infer_loader)
         # Determine authenticity and display result
         authenticity = '**Counterfeit**  :x:' if mean_.item() >= 0.5 else '**Authentic**  :100:'
-        score = mean_  if mean_.item() >= 0.5 else mean_= 1-mean_
+        score = mean_  if mean_.item() >= 0.5 else 1-mean_
         st.write(confidence)
         with st.spinner('Please wait while our model works its magic classifying your handbag! 👜✨'):
             time.sleep(5)
