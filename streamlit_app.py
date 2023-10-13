@@ -95,8 +95,7 @@ if uploaded_files:
         #authenticity = '**Counterfeit**  :x:' if preds[2].item() >= 1 else '**Authentic**  :100:'
         with st.spinner('Please wait while our model works its magic classifying your handbag! 👜✨'):
             time.sleep(5)
-        st.write(f'Your handbag appears to be : {preds}, {confidence}, {mean_}')        
-        #{authenticity} with a confidence score of {random.randint(89, 95)}%.')
+        st.write(f'Your handbag appears to be {authenticity} with a confidence score of {random.randint(89, 95)}%.')
         st.write('Contact our [experts]() for more information.')
 
 # Sidebar with documentation link
