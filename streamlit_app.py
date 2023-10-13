@@ -96,7 +96,7 @@ if uploaded_files:
         st.write(confidence)
         with st.spinner('Please wait while our model works its magic classifying your handbag! 👜✨'):
             time.sleep(5)
-        st.write(f'Your handbag appears to be {authenticity} with a confidence score of {round(mean_*100,2)}%.')
+        st.write(f'Your handbag appears to be {authenticity} with a confidence score of {round(score*100,2)}%.')
         st.write('Contact our [experts]() for more information.')
 
 # Sidebar with documentation link
