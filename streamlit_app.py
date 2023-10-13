@@ -93,10 +93,12 @@ if uploaded_files:
         authenticity = '**Counterfeit**  :x:' if mean_.item() >= 0.5 else '**Authentic**  :100:'
         score = mean_  if mean_.item() >= 0.5 else 1-mean_
         score = score.numpy().mean()
+        formatted_number = "{:.2f}".format(float(score))
+
         st.write(score)
         with st.spinner('Please wait while our model works its magic classifying your handbag! 👜✨'):
             time.sleep(5)
-        st.write(f'Your handbag appears to be {authenticity} with a confidence score of {round(score,2)}%.')
+        st.write(f'Your handbag appears to be {authenticity} with a confidence score of {formatted_number}%.')
         st.write('Contact our [experts]() for more information.')
 
 # Sidebar with documentation link
