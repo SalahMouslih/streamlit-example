@@ -90,7 +90,7 @@ if uploaded_files:
     # Predict authenticity on button click
     if st.button("Predict"):
         preds, confidence , mean_= predict_class(trained_model, infer_loader)
-        st.write(preds)
+        st.write(preds, mean_)
        
 # Sidebar with documentation link
 st.sidebar.markdown("### Documentation")
